@@ -7,6 +7,10 @@ Refatorar: editar o seu código."""
 
 
 def soma(x, y, z=None):
+    """
+    função para soma com 2 argumentos obrigatórios e um terceiro
+    alternativo.
+    """
     if z is not None:
         print(f"{x=} {y=} {z=}", x + y + z)
     else:
