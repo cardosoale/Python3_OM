@@ -1,7 +1,9 @@
 def multiplicador(mult):
     def multiplica(num):
         return num * mult
+
     return multiplica
+
 
 # Solicitar a entrada do usuário para num e mult
 num = float(input("Digite um número: "))
