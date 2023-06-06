@@ -40,7 +40,7 @@ for pergunta in perguntas:
         escolha_int = int(escolha)
 
     if escolha_int is not None:
-        if escolha_int >= 0 and escolha_int < qtd_opcoes:
+        if escolha_int < qtd_opcoes:
             if opcoes[escolha_int] == pergunta["Resposta"]:
                 acertou = True
 
