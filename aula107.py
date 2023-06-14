@@ -15,6 +15,8 @@ estados = ["BA", "SP", "MG", "RJ"]
 for cidade, estado in zip(cidades, estados):
     print(cidade, estado)
 print()
+print(list(zip(cidades, estados)))
+print()
 
 # ['BA', 'SP', 'MG', 'RJ']
 # Resultado
