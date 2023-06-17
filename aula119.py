@@ -9,12 +9,14 @@
 # refazer = todo ['fazer café']
 # refazer = todo ['fazer café', 'caminhar']
 
+import json
+
 lista_a_fazer = []
 lista_refazer = []
 while True:
     comandos = input(
         "Digite o que deseja fazer, listar, desfazer,\
-refazer, ou digite a tarefa a fazer: "
+refazer, ou digite a tarefa: "
     )
     if comandos == "0":
         break
@@ -36,3 +38,5 @@ refazer, ou digite a tarefa a fazer: "
             lista_a_fazer.append(lista_refazer.pop())
     else:
         lista_a_fazer.append(comandos)
+
+
