@@ -1,5 +1,5 @@
 #!/bin/sh
-'''exec' "/media/alexandre/Estudos/Github/Meus Repositórios/Python3_OM/venv/bin/python3" "$0" "$@"
+'''exec' "/media/alexandre/Estudos/Github/Meus Repositórios/Python3_OM/venv/bin/python" "$0" "$@"
 ' '''
 # -*- coding: utf-8 -*-
 import re
