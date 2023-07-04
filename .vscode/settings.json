@@ -1,10 +1,10 @@
 {
   "window.zoomLevel": 0,
-  "editor.fontSize": 14,
+  "editor.fontSize": 16,
   "editor.hover.enabled": true,
   "workbench.startupEditor": "none",
   "explorer.compactFolders": false,
-  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.fontSize": 16,
   "editor.rulers": [
     80,
     120
@@ -12,12 +12,12 @@
   "workbench.colorTheme": "OM Theme (Default Dracula Italic)",
   "workbench.iconTheme": "material-icon-theme",
   "code-runner.executorMap": {
-    "python": "clear ; source venv/bin/activate ; python -u"
+    "python": "clear; source venv/bin/activate ; python -u"
   },
   "code-runner.runInTerminal": true,
   "code-runner.ignoreSelection": true,
-  "editor.fontFamily": "MesloLGS BigLinux, Consolas, 'Dank Mono', 'Source Code Pro', 'Fira Code', Menlo, 'Inconsolata', 'Droid Sans Mono', 'DejaVu Sans Mono', 'Ubuntu Mono', 'Courier New', Courier, Monaco, monospace",
-  "terminal.integrated.fontFamily": "MesloLGS BigLinux",
+  "editor.fontFamily": "Ubuntu Mono for Powerline, Consolas, 'Dank Mono', 'Source Code Pro', 'Fira Code', Menlo, 'Inconsolata', 'Droid Sans Mono', 'DejaVu Sans Mono', 'Ubuntu Mono', 'Courier New', Courier, Monaco, monospace",
+  "terminal.integrated.fontFamily": "Ubuntu Mono for Powerline",
   "[python]": {
     "editor.defaultFormatter": "ms-python.autopep8",
     "editor.tabSize": 4,
