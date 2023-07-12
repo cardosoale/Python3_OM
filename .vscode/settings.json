@@ -1,10 +1,10 @@
 {
   "window.zoomLevel": 0,
-  "editor.fontSize": 17,
+  "editor.fontSize": 16,
   "editor.hover.enabled": true,
   "workbench.startupEditor": "none",
   "explorer.compactFolders": false,
-  "terminal.integrated.fontSize": 17,
+  "terminal.integrated.fontSize": 16,
   "editor.rulers": [
     80,
     120
@@ -16,8 +16,9 @@
   },
   "code-runner.runInTerminal": true,
   "code-runner.ignoreSelection": true,
-  "editor.fontFamily": "Ubuntu Mono for Powerline, Consolas, 'Dank Mono', 'Source Code Pro', 'Fira Code', Menlo, 'Inconsolata', 'Droid Sans Mono', 'DejaVu Sans Mono', 'Ubuntu Mono', 'Courier New', Courier, Monaco, monospace",
-  "terminal.integrated.fontFamily": "Ubuntu Mono for Powerline",
+  "editor.fontFamily": "'Fira Code', 'Ubuntu Mono for Powerline', Consolas, 'Dank Mono', 'Source Code Pro', 'Fira Code', Menlo, 'Inconsolata', 'Droid Sans Mono', 'DejaVu Sans Mono', 'Ubuntu Mono', 'Courier New', Courier, Monaco, monospace",
+  "terminal.integrated.fontFamily": "'Fira Code', 'Ubuntu Mono for Powerline'",
+  "editor.fontLigatures": true,
   "[python]": {
     "editor.defaultFormatter": "ms-python.autopep8",
     "editor.tabSize": 4,
