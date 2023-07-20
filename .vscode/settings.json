@@ -41,6 +41,10 @@
   ],
   "python.linting.flake8Enabled": true,
   "python.linting.mypyEnabled": true,
+  "python.linting.pylintPath": "/bin/pylint",
+  // "python.linting.mypyArgs": [
+  //   "--check-untyped-defs"
+  // ],
   "python.testing.unittestEnabled": false,
   "python.testing.pytestEnabled": true,
   "python.analysis.diagnosticSeverityOverrides": {
