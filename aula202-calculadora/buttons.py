@@ -1,10 +1,11 @@
 from typing import TYPE_CHECKING
+import math
 
 from PySide6.QtCore import Slot
 from PySide6.QtWidgets import QGridLayout, QPushButton
 from utils import isEmpty, isNumOrDot, isValidNumber
 from variables import MEDIUM_FONT_SIZE
-
+from main_window import MainWindow
 
 if TYPE_CHECKING:
     from display import Display
@@ -25,7 +26,8 @@ class Button(QPushButton):
 
 class ButtonsGrid(QGridLayout):
     def __init__(
-            self, display: 'Display', info: 'Info', *args, **kwargs
+            self, display: 'Display', info: 'Info', window: 'MainWindow',
+            *args, **kwargs
     ) -> None:
         super().__init__(*args, **kwargs)
 
@@ -38,7 +40,14 @@ class ButtonsGrid(QGridLayout):
         ]
         self.display = display
         self.info = info
+        self.window = window
         self._equation = ''
+        self._equationInitialValue = 'Sua conta'
+        self._left = None
+        self._right = None
+        self._op = None
+
+        self.equation = self._equationInitialValue
         self._makeGrid()
 
     @property
@@ -50,39 +59,133 @@ class ButtonsGrid(QGridLayout):
         self._equation = value
         self.info.setText(value)
 
+    def vouApagarVocê(self):
+        print('Signal recebido por "vouApagarVocê" em', type(self).__name__)
+
     def _makeGrid(self):
+        self.display.eqPressed.connect(self.vouApagarVocê)
+        self.display.delPressed.connect(self.display.backspace())
+        self.display.clearPressed.connect(self.vouApagarVocê)
+
         for rowNumber, rowData in enumerate(self._gridMask):
             for colNumber, buttonText in enumerate(rowData):
                 button = Button(buttonText)
+
                 if not isNumOrDot(buttonText) and not isEmpty(buttonText):
-                    button.setProperty('cssClass', 'specialButton')
+                    button.setProperty(
+                        'cssClass', 'specialButton')
                     self._configSpecialButton(button)
 
                 self.addWidget(button, rowNumber, colNumber)
-                slot = self._makeSlot(
-                    self._insertButtonTextToDisplay,
-                    button,
-                )
+                slot = self._makeSlot(self._insertButtonTextToDisplay, button)
                 self._connectButtonClicked(button, slot)
 
     def _connectButtonClicked(self, button, slot):
-        button.clicked.connect(slot)
+        button.clicked.connect(slot)  # type: ignore
 
     def _configSpecialButton(self, button):
         text = button.text()
-        print('Texto do botão especial', text)
+
+        if text == 'C':
+            self._connectButtonClicked(button, self._clear)
+
+        if text in '+-/*^':
+            self._connectButtonClicked(
+                button,
+                self._makeSlot(self._operatorClicked, button)
+            )
+
+        if text == '=':
+            self._connectButtonClicked(
+                button, self._eq
+            )
+
+        if text == '◀':
+            self._connectButtonClicked(
+                button, self.display.backspace
+            )
 
     def _makeSlot(self, func, *args, **kwargs):
-        @Slot(bool)
+        @ Slot(bool)
         def realSlot(_):
             func(*args, **kwargs)
         return realSlot
 
     def _insertButtonTextToDisplay(self, button):
-        button_text = button.text()
-        newDisplayValue = self.display.text() + button_text
+        buttonText = button.text()
+        newDisplayValue = self.display.text() + buttonText
 
         if not isValidNumber(newDisplayValue):
             return
 
-        self.display.insert(button_text)
+        self.display.insert(buttonText)
+
+    def _clear(self):
+        self._left = None
+        self._right = None
+        self._op = None
+        self.equation = self._equationInitialValue
+        self.display.clear()
+
+    def _operatorClicked(self, button):
+        buttonText = button.text()  # +-/* (etc...)
+        displayText = self.display.text()  # Deverá ser meu número _left
+        self.display.clear()  # Limpa o display
+
+        # Se a pessoa clicou no operador sem
+        # configurar qualquer número
+        if not isValidNumber(displayText) and self._left is None:
+            self._showError('Nada digitado')
+            return
+
+        # Se houver algo no número da esquerda,
+        # não fazemos nada. Aguardaremos o número da direita.
+        if self._left is None:
+            self._left = float(displayText)
+
+        self._op = buttonText
+        self.equation = f'{self._left} {self._op} ??'
+
+    def _eq(self):
+        displayText = self.display.text()
+
+        if not isValidNumber(displayText):
+            self._showError('Sem valor para adicionar')
+            return
+
+        self._right = float(displayText)
+        self.equation = f'{self._left} {self._op} {self._right}'
+        result = 'error'
+
+        try:
+            # result = eval(self.equation)
+
+            if '^' in self.equation and isinstance(self._left, float):
+                result = math.pow(self._left, self._right)
+            else:
+                result = eval(self.equation)
+
+        except ZeroDivisionError:
+            self._showError('Divisão por 0')
+
+        except OverflowError:
+            self._showError('Estouro de Capacidade')
+
+        self.display.clear()
+        self.info.setText(f'{self.equation} = {result}')
+        self._left = result
+        self._right = None
+
+        if result == 'error':
+            self._left = None
+
+    def _showError(self, text):
+        msgBox = self.window.MakeMsgBox()
+        msgBox.setText(text)
+        msgBox.setIcon(msgBox.Icon.Information)
+
+        # msgBox.setStandardButtons(msgBox.StandardButton.NoToAll)
+        # msgBox.button(msgBox.StandardButton.NoToAll).setText(
+        # 'Não para todos')
+
+        msgBox.exec()
