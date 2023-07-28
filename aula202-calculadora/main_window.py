@@ -15,7 +15,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.cw)
 
         #  Título da janela
-        self.setWindowTitle('Calc Python')
+        self.setWindowTitle('PyKalc')
 
     def adjustFixedSize(self):
         #  Última coisa a ser feita
