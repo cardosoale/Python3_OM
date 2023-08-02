@@ -1,6 +1,7 @@
 # Doc: https://pymysql.readthedocs.io/en/latest/
 # Pypy: https://pypi.org/project/pymysql/
 # GitHub: https://github.com/PyMySQL/PyMySQL
+# Teste sync
 
 import pymysql
 import dotenv
