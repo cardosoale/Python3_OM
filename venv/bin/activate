@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/media/alexandre/Estudos/Github/Meus Repositórios/Python3_OM/venv"
+VIRTUAL_ENV="/media/alexandre/Estudos1/Github/Meus Repositórios/Python3_OM/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

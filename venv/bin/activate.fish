@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/media/alexandre/Estudos/Github/Meus Repositórios/Python3_OM/venv"
+set -gx VIRTUAL_ENV "/media/alexandre/Estudos1/Github/Meus Repositórios/Python3_OM/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

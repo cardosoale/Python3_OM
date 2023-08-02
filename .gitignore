@@ -1,3 +1,9 @@
+mysql_206
+__localcode
+chromedriver
+.DS_STORE
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

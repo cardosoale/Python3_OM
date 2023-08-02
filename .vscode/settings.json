@@ -12,7 +12,7 @@
   "workbench.colorTheme": "OM Theme (Default Dracula Italic)",
   "workbench.iconTheme": "material-icon-theme",
   "code-runner.executorMap": {
-    "python": "clear; python -u"
+    "python": "clear; python3 -u"
   },
   "code-runner.runInTerminal": true,
   "code-runner.ignoreSelection": true,
@@ -39,8 +39,8 @@
   "python.linting.flake8Args": [
     // "--ignore=E111",
   ],
-  "python.linting.flake8Enabled": true,
-  "python.linting.mypyEnabled": true,
+  "python.linting.flake8Enabled": false,
+  "python.linting.mypyEnabled": false,
   "python.linting.pylintPath": "/bin/pylint",
   // "python.linting.mypyArgs": [
   //   "--check-untyped-defs"
@@ -57,5 +57,7 @@
   // "python.defaultInterpreterPath": "./venv/bin/python",
   "python.analysis.typeCheckingMode": "basic",
   "cSpell.enabled": true,
-  "python.formatting.provider": "none"
+  "python.formatting.provider": "none",
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true
 }
